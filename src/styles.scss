@@ -1,1 +1,105 @@
-/* You can add global styles to this file, and also import other style files */
+.carousel-control-prev-icon {
+  background-image: url("assets/images/left.svg");
+  background-size: initial;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  border: 1px solid #076BFF;
+  width: 40px;
+  height: 40px;
+  padding: 9px 13px;
+  position: absolute;
+  left: 15px;
+  top: calc(50% - 20px)
+}
+
+.carousel {
+  /*position: relative;*/
+}
+
+.carousel-control-next-icon {
+  background-image: url("assets/images/right.svg");
+  background-size: initial;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  border: 1px solid #076BFF;
+  width: 40px;
+  height: 40px;
+  padding: 9px 13px;
+  position: absolute;
+  right: 15px;
+  top: calc(50% - 20px)
+}
+
+.carousel-item {
+  /*position: relative;*/
+}
+
+.ui-accordion .ui-accordion-header {
+  position: relative;
+}
+
+.ui-icon:active {
+  background-image: url("assets/images/up.svg");
+  position: absolute;
+  right: 27px;
+}
+
+.ui-icon {
+  background-image: url("assets/images/down.svg");
+  position: absolute;
+  right: 27px;
+}
+
+.answers {
+  margin: 0 auto;
+}
+
+.form {
+  margin: 0 auto;
+}
+
+.white-popup {
+  position: relative;
+  background: #FFF;
+  padding: 20px;
+  width: auto;
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+.popup-container {
+  position: relative;
+  width: 100%;
+}
+
+
+.popup-btn {
+  margin-top: 20px;
+  padding: 12px 30px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.popup-content {
+  color: white;
+  flex-direction: column;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+  max-width: 500px;
+  text-align: center;
+  animation: popup-appear 0.5s ease-out;
+  position: fixed;
+  top: 37%;
+  left: 30%;
+  width: 50%;
+  height: 25%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+
+}

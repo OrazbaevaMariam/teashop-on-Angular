@@ -1,0 +1,12 @@
+<div class="col col-lg-4 col-md-6 col-12">
+  <div class="card" *ngFor="let tea of teas">
+    <a class="popUpImage" href="../../../../assets/images/detox%20tea.png"><img src="../../../../assets/{{tea.image}}" id="{{tea.id}}" class="card-img-top" alt="tea {{tea.id}}"></a>
+    <div class="card-body">
+      <h5 class="card-title fw-bold">{{ tea.title }}</h5>
+      <p class="card-price">{{ tea.price }}</p>
+      <p class="card-text">{{tea.description}}</p>
+      <a routerLink="order" class="btn btn-primary hvr-hang">Купить</a>
+    </div>
+  </div>
+</div>
+

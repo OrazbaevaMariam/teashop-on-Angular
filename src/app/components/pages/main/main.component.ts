@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {Observable} from "rxjs";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Observable, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-main',
@@ -8,8 +8,10 @@ import {Observable} from "rxjs";
 })
 
 
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, OnDestroy {
   private observable: Observable<boolean>;
+  popupIsShown: boolean = false;
+  private subscription: Subscription | null = null;
 
   constructor() {
    this.observable = new Observable((observer) => {
@@ -20,13 +22,16 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
-this.observable.subscribe((param:boolean)=> {
-  console.log(param);
+
+ this.subscription = this.observable.subscribe((param:boolean)=> {
+
+ this.popupIsShown = true;
+ console.log(this.popupIsShown);
 })
   }
 
-
-
-
+  ngOnDestroy() {
+    this.subscription?.unsubscribe();
+  }
 
 }

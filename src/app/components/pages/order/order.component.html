@@ -1,41 +1,102 @@
-<section class="wow animate__slideInDown">
-  <div class="col-lg-6 form">
-    <h2 class="fw-bold text-center pb-5" id="Order">Cделать заказ</h2>
-    <form class="row g-4" id="FormForOrder">
-      <div class="col-lg-4 col-md-6 col-sm-12">
-        <label for="inputName" class="form-label">Имя</label>
-        <input type="text" class="form-control" id="inputName">
-      </div>
-      <div class="col-lg-4 col-md-6 col-sm-12">
-        <label for="inputLastName" class="form-label">Фамилия</label>
-        <input type="text" class="form-control" id="inputLastName">
-      </div>
-      <div class="col-lg-4 col-md-6 col-sm-12">
-        <label for="inputPhone" class="form-label">Телефон</label>
-        <input type="number" class="form-control" id="inputPhone">
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-12">
-        <label for="inputCountry" class="form-label">Страна</label>
-        <input type="text" class="form-control" id="inputCountry">
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-12">
-        <label for="inputIndex" class="form-label">Индекс</label>
-        <input type="number" class="form-control" id="inputIndex">
-      </div>
+<section class="wow animate__slideInDown" >
+  <div *ngIf="thanks" class="thanks">Спасибо за заказ!</div>
+
+  <div  class="col-lg-6 form">
+    <form class="row g-4" id="FormForOrder" novalidate [formGroup]="orderForm" *ngIf="success">
+      <h2 class="fw-bold text-center pb-5" id="Order">Cделать заказ</h2>
       <div class="col-lg-12 col-md-6 col-sm-12">
-        <label for="inputAddress" class="form-label">Address</label>
-        <input type="text" class="form-control" id="inputAddress">
+        <label for="name" class="form-label">Имя</label>
+        <input type="text" class="form-control" id="name" formControlName="name" >
       </div>
+      <div class="m-0" *ngIf="orderForm.get('name')?.invalid && (orderForm.get('name')?.touched || orderForm.get('name')?.dirty) ">
+      <div class="invalid-feedback" *ngIf="orderForm.get('name')?.errors?.['required']">
+        Поле не должно быть пустым
+      </div>
+      <div class="invalid-feedback" *ngIf="orderForm.get('name')?.errors?.['pattern']">
+        Должны быть использованы только буквы
+      </div>
+      </div>
+
       <div class="col-lg-12 col-md-6 col-sm-12">
-        <label for="inputAddress" class="form-label">Item</label>
-        <input type="text" class="form-control" id="inputItem">
+        <label for="last_name" class="form-label">Фамилия</label>
+        <input type="text" class="form-control" id="last_name" formControlName="last_name" >
       </div>
+      <div class="m-0" *ngIf="orderForm.get('last_name')?.invalid && (orderForm.get('last_name')?.touched || orderForm.get('surname')?.dirty) ">
+        <div class="invalid-feedback" *ngIf="orderForm.get('surname')?.errors?.['required']">
+          Поле не должно быть пустым
+        </div>
+        <div class="invalid-feedback" *ngIf="orderForm.get('surname')?.errors?.['pattern']">
+          Должны быть использованы только буквы
+        </div>
+      </div>
+
       <div class="col-lg-12 col-md-6 col-sm-12">
-        <label for="inputAddress" class="form-label">Comment</label>
-        <input type="text" class="form-control" id="inputComment">
+        <label for="phone" class="form-label">Телефон</label>
+        <input type="number" class="form-control" id="phone" formControlName="phone" >
       </div>
+      <div class="m-0" *ngIf="orderForm.get('phone')?.invalid && (orderForm.get('phone')?.touched || orderForm.get('phone')?.dirty) ">
+        <div class="invalid-feedback" *ngIf="orderForm.get('phone')?.errors?.['required']">
+          Поле не должно быть пустым
+        </div>
+        <div class="invalid-feedback" *ngIf="orderForm.get('phone')?.errors?.['pattern']">
+          Должны быть использованы только буквы
+        </div>
+      </div>
+
+      <div class="col-lg-12 col-md-6 col-sm-12">
+        <label for="country" class="form-label" >Страна</label>
+        <input type="text" class="form-control" id="country" formControlName="country" >
+      </div>
+      <div class="invalid-feedback m-0" *ngIf="orderForm.get('country')?.invalid
+      && (orderForm.get('country')?.touched || orderForm.get('country')?.dirty)
+      && orderForm.get('country')?.errors?.['required']">
+        Поле не должно быть пустым
+      </div>
+
+      <div class="col-lg-12 col-md-6 col-sm-12">
+        <label for="zip" class="form-label">Индекс</label>
+        <input type="number" class="form-control" id="zip" formControlName="zip" >
+      </div>
+      <div class="invalid-feedback m-0" *ngIf="orderForm.get('zip')?.invalid
+      && (orderForm.get('zip')?.touched || orderForm.get('zip')?.dirty)
+      && orderForm.get('zip')?.errors?.['required']">
+        Поле не должно быть пустым
+      </div>
+
+      <div class="col-lg-12 col-md-6 col-sm-12">
+        <label for="address" class="form-label">Address</label>
+        <input type="text" class="form-control" id="address" formControlName="address" >
+      </div>
+      <div class="m-0" *ngIf="orderForm.get('address')?.invalid && (orderForm.get('address')?.touched || orderForm.get('address')?.dirty) ">
+        <div class="invalid-feedback" *ngIf="orderForm.get('address')?.errors?.['required']">
+          Поле не должно быть пустым
+        </div>
+        <div class="invalid-feedback" *ngIf="orderForm.get('address')?.errors?.['pattern']">
+          Должны быть использованы только буквы, цифры, пробелы, дефис и слеш
+        </div>
+      </div>
+
+      <div class="col-lg-12 col-md-6 col-sm-12">
+        <label for="product" class="form-label">Item</label>
+        <input  type="text" class="form-control" id="product" formControlName="product">
+<!--        <p [hidden]="!orderForm" type="text" class="form-control" id="inputItem" *ngIf="productOrder"> {{productOrder}}-->
+      </div>
+<!--      <div class="invalid-feedback" *ngIf="orderForm.get('item')?.invalid-->
+<!--      && (orderForm.get('item')?.touched || orderForm.get('item')?.dirty)-->
+<!--      && orderForm.get('item')?.errors?.['required']">-->
+<!--        Поле не должно быть пустым-->
+<!--      </div>-->
+
+      <div class="col-lg-12 col-md-6 col-sm-12">
+        <label for="comment" class="form-label">Comment</label>
+        <input type="text" class="form-control" id="comment" formControlName="comment">
+      </div>
+
       <div class="col">
-        <a href="#test-popup" type="submit" class="btn btn-primary open-popup-link" id="btn-submit">Отправить</a>
+        <button class="btn btn-primary open-popup-link" id="btn-submit" (click)="sendOrder()" >Отправить</button>
+      </div>
+      <div class="invalid-feedback" *ngIf="errorMessage">
+        Произошла ошибка. Попробуйте еще раз
       </div>
     </form>
   </div>

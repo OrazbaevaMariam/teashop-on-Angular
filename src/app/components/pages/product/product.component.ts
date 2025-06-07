@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TeaService} from "../../../services/tea-service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-product',
@@ -8,32 +9,16 @@ import {TeaService} from "../../../services/tea-service";
 })
 export class ProductComponent implements OnInit {
   selectedTea: any = null;
-  teas: any[] = [];
-  isLoading = true;
-  errorMessage: string | null = null;
   id: number = 0;
+  popupIsShown: boolean = false;
 
-  constructor(private teaService: TeaService) {}
+  constructor(private teaService: TeaService,
+              private route: ActivatedRoute,) {}
 
   ngOnInit(): void {
-    this.loadTeas()
+    this.id=Number(this.route.snapshot.queryParams['id']);
     this.loadTeaDetails(this.id);
-  }
-
-  loadTeas(): void {
-    this.isLoading = true;
-    this.teaService.getTeas().subscribe({
-      next: (data) => {
-        this.teas = data;
-        console.log(data);
-        this.isLoading = false;
-      },
-      error: (err) => {
-        this.errorMessage = 'Ошибка загрузки данных. Попробуйте позже.';
-        this.isLoading = false;
-        console.error('API error:', err);
-      }
-    });
+    console.log(this.id);
   }
 
   // Загрузка конкретного чая
@@ -42,6 +27,7 @@ export class ProductComponent implements OnInit {
     this.teaService.getTeaById(id).subscribe({
       next: (tea) => {
         this.selectedTea = tea;
+        console.log(this.selectedTea);
       },
       error: (err) => {
         console.error('Error loading tea details:', err);

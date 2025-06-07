@@ -21,7 +21,6 @@ export class CatalogComponent implements OnInit {
     this.teaService.getTeas().subscribe({
       next: (data) => {
         this.teas = data;
-        console.log(data);
         this.isLoading = false;
       },
       error: (err) => {

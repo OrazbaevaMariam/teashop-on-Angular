@@ -10,6 +10,12 @@ const routes: Routes = [
   {path: 'catalog', component: CatalogComponent},
   {path: 'order', component: OrderComponent},
   {path: 'product', component: ProductComponent},
+  {path: 'catalog/product/:id', component: ProductComponent},
+  {path: 'catalog',
+    children: [
+    { path: 'product', component: ProductComponent }
+    ]
+  }
 ];
 
 @NgModule({

@@ -1,12 +1,15 @@
-<div class="col col-lg-4 col-md-6 col-12">
-  <div class="card" *ngFor="let tea of teas">
-    <a class="popUpImage" href="../../../../assets/images/detox%20tea.png"><img src="../../../../assets/{{tea.image}}" id="{{tea.id}}" class="card-img-top" alt="tea {{tea.id}}"></a>
+<div class="container product-container w-50 h-50 d-flex align-items-center justify-content-center">
+<div class="col " *ngIf="selectedTea">
+  <div class="card" >
+    <a class="popUpImage"><img src="{{selectedTea.image}}" id="{{selectedTea.id}}"
+                               class="card-img-top" alt="tea{{selectedTea.id}}"></a>
     <div class="card-body">
-      <h5 class="card-title fw-bold">{{ tea.title }}</h5>
-      <p class="card-price">{{ tea.price }}</p>
-      <p class="card-text">{{tea.description}}</p>
-      <a routerLink="order" class="btn btn-primary hvr-hang">Купить</a>
+      <h5 class="card-title fw-bold">{{ selectedTea.title }}</h5>
+      <p class="card-price">{{ selectedTea.price | currency:'RUB ':'symbol':'1.0-0' }}</p>
+      <p class="card-text">{{selectedTea.description}}</p>
+      <a [routerLink]="['/order']" [queryParams]="{product: selectedTea.title}" class="btn btn-primary hvr-hang">Купить</a>
     </div>
   </div>
+</div>
 </div>
 

@@ -26,7 +26,6 @@ export class MainComponent implements OnInit, OnDestroy {
  this.subscription = this.observable.subscribe((param:boolean)=> {
 
  this.popupIsShown = true;
- console.log(this.popupIsShown);
 })
   }
 

@@ -10,11 +10,7 @@ export class OrderService {
 
   constructor(private http: HttpClient) { }
 
-  // Получение списка чаев
-  // sendOrder(): Observable<any[]> {
-  //   return this.http.get<any[]>(this.apiUrl);
-  //
-  // }
+
 
   // Получение конкретного чая по ID
   getTeaById(id: number): Observable<any> {

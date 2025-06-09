@@ -39,7 +39,7 @@
           Поле не должно быть пустым
         </div>
         <div class="invalid-feedback" *ngIf="orderForm.get('phone')?.errors?.['pattern']">
-          Должны быть использованы только буквы
+          Должны быть использованы только цифры
         </div>
       </div>
 
@@ -64,7 +64,7 @@
       </div>
 
       <div class="col-lg-12 col-md-6 col-sm-12">
-        <label for="address" class="form-label">Address</label>
+        <label for="address" class="form-label">Адрес</label>
         <input type="text" class="form-control" id="address" formControlName="address" >
       </div>
       <div class="m-0" *ngIf="orderForm.get('address')?.invalid && (orderForm.get('address')?.touched || orderForm.get('address')?.dirty) ">
@@ -77,18 +77,12 @@
       </div>
 
       <div class="col-lg-12 col-md-6 col-sm-12">
-        <label for="product" class="form-label">Item</label>
-        <input  type="text" class="form-control" id="product" formControlName="product">
-<!--        <p [hidden]="!orderForm" type="text" class="form-control" id="inputItem" *ngIf="productOrder"> {{productOrder}}-->
+        <label  for="product" class="form-label">Предмет</label>
+        <input type="text" class="form-control" id="product" formControlName="product">
       </div>
-<!--      <div class="invalid-feedback" *ngIf="orderForm.get('item')?.invalid-->
-<!--      && (orderForm.get('item')?.touched || orderForm.get('item')?.dirty)-->
-<!--      && orderForm.get('item')?.errors?.['required']">-->
-<!--        Поле не должно быть пустым-->
-<!--      </div>-->
 
       <div class="col-lg-12 col-md-6 col-sm-12">
-        <label for="comment" class="form-label">Comment</label>
+        <label for="comment" class="form-label">Комментарий</label>
         <input type="text" class="form-control" id="comment" formControlName="comment">
       </div>
 

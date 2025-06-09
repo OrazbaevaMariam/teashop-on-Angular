@@ -1,15 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, Validators} from "@angular/forms";
-import {OrderService} from "../../../services/order-service";
 import {HttpClient} from "@angular/common/http";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss']
 })
-export class OrderComponent implements OnInit {
+export class OrderComponent implements OnInit, OnDestroy {
+  private subscription: Subscription | null = null;
+
   orderForm=this.fb.group({
     name: ['', [Validators.required, Validators.pattern('^[a-zA-Zа-яА-ЯёЁ]+$')]],
     last_name: ['', [Validators.required, Validators.pattern('^[a-zA-Zа-яА-Я]+$')]],
@@ -21,11 +23,10 @@ export class OrderComponent implements OnInit {
     comment: ['']
   })
 
-
-  isFormSubmitted: boolean = false;
   errorMessage: boolean = false;
   success: boolean = true;
   thanks: boolean = false;
+
 
   constructor(private activatedRoute: ActivatedRoute, private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private http: HttpClient) {
   }
@@ -35,27 +36,24 @@ export class OrderComponent implements OnInit {
 
     this.activatedRoute.queryParams.subscribe((params) => {
       if (params['product']) {
-        // this.productOrder = params['product'];
-        // this.item = params['product'];
         this.orderForm.patchValue({
           product: params['product'],
-
         })
-        console.log(this.orderForm.value);
+        this.orderForm.get('product')?.disable({ emitEvent: false });
+
 
       }
-    })
+    });
+
   }
+
 
   sendOrder() {
     if (this.orderForm.valid) {
       const formData = this.orderForm.getRawValue();
-      console.log(formData)// getRawValue включает disabled поля
       this.http.post('https://testologia.ru/order-tea', formData).subscribe({
         next: (response: any) => {
-          console.log(response);
           if (response.success === 1) {
-            this.isFormSubmitted = true; // Скрыть форму, показать "Спасибо за заказ!"
             this.errorMessage = false;
             this.success = false;
             this.thanks = true;
@@ -70,5 +68,8 @@ export class OrderComponent implements OnInit {
         }
       });
     }
+  }
+  ngOnDestroy() {
+    this.subscription?.unsubscribe();
   }
 }

@@ -1,5 +1,5 @@
 <section class="wow animate__slideInDown" >
-  <div *ngIf="thanks" class="thanks">Спасибо за заказ!</div>
+  <div *ngIf="!success" class="thanks">Спасибо за заказ!</div>
 
   <div  class="col-lg-6 form">
     <form class="row g-4" id="FormForOrder" novalidate [formGroup]="orderForm" *ngIf="success">

@@ -25,7 +25,6 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   errorMessage: boolean = false;
   success: boolean = true;
-  thanks: boolean = false;
 
 
   constructor(private activatedRoute: ActivatedRoute, private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private http: HttpClient) {
@@ -56,7 +55,6 @@ export class OrderComponent implements OnInit, OnDestroy {
           if (response.success === 1) {
             this.errorMessage = false;
             this.success = false;
-            this.thanks = true;
 
 
           }  if (response.success === 0) {

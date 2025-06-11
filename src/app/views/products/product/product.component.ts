@@ -1,10 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {TeaService} from "../../../services/tea-service";
+import {TeaService} from "../../../shared/services/tea-service";
 import {ActivatedRoute} from "@angular/router";
 import {Subscription} from "rxjs";
 
 @Component({
-  selector: 'app-product',
+  selector: 'app-products',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })

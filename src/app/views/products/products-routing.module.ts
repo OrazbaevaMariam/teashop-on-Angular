@@ -10,7 +10,6 @@ const routes: Routes = [
       { path: 'product', component: ProductComponent }
     ]
   }
-
 ];
 
 @NgModule({

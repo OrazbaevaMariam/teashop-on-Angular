@@ -7,7 +7,8 @@
         <div class="card-body">
           <h5 class="card-title fw-bold">{{tea.title}}</h5>
           <p class="card-text">{{tea.description}}</p>
-          <a [routerLink]="['/catalog/products']" class="btn btn-primary hvr-hang" [queryParams]="{id: tea.id}">Подробнее</a>
+          <a [routerLink]="['/catalog/product']" class="btn btn-primary hvr-hang" [queryParams]="{id: tea.id}">Подробнее</a>
+
         </div>
       </div>
     </div>
